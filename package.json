@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "esbuild": "^0.24.0"
+    "esbuild": "^0.24.0",
+    "markdown-it": "^14.2.0",
+    "markdown-it-anchor": "^9.2.0"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.0",
@@ -22,6 +24,9 @@
     "typescript": "^5.7.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "@parcel/watcher"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@parcel/watcher"
+    ]
   }
 }

@@ -1,7 +1,19 @@
 import type { UserConfig } from "@11ty/eleventy";
 import { execSync } from "node:child_process";
+import markdownIt from "markdown-it";
+import markdownItAnchor from "markdown-it-anchor";
 
 export default function (eleventyConfig: UserConfig) {
+  eleventyConfig.setLibrary(
+    "md",
+    markdownIt({ html: true }).use(markdownItAnchor, {
+      permalink: markdownItAnchor.permalink.linkInsideHeader({
+        symbol: "#",
+        placement: "after",
+      }),
+    })
+  );
+
   eleventyConfig.on("eleventy.before", () => {
     execSync(
       "node_modules/.bin/esbuild src/assets/ts/blog.ts --bundle --outfile=src/assets/js/blog.js --format=iife --target=es2020",
