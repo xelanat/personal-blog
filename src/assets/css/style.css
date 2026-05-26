@@ -12,3 +12,72 @@
     @apply bg-blue-600 text-white hover:bg-blue-700;
   }
 }
+
+@layer utilities {
+  html[data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  html[data-theme="dark"] .bg-gray-50,
+  html[data-theme="dark"] .bg-white {
+    @apply bg-gray-900;
+  }
+
+  html[data-theme="dark"] .text-gray-900 {
+    @apply text-gray-50;
+  }
+
+  html[data-theme="dark"] .text-gray-600 {
+    @apply text-gray-300;
+  }
+
+  html[data-theme="dark"] .text-gray-500 {
+    @apply text-gray-400;
+  }
+
+  html[data-theme="dark"] .text-gray-400 {
+    @apply text-gray-500;
+  }
+
+  html[data-theme="dark"] .border-gray-200 {
+    @apply border-gray-700;
+  }
+
+  html[data-theme="dark"] .bg-blue-50 {
+    @apply bg-blue-700;
+  }
+
+  html[data-theme="dark"] .text-blue-700 {
+    @apply text-blue-100;
+  }
+
+  html[data-theme="dark"] .tag-filter-btn {
+    @apply bg-blue-700 text-blue-100 hover:bg-blue-600;
+  }
+
+  html[data-theme="dark"] .tag-filter-btn.active {
+    @apply bg-blue-500 text-white hover:bg-blue-600;
+  }
+
+  html[data-theme="dark"] .prose {
+    @apply prose-invert;
+  }
+
+  html[data-theme="dark"] .prose :where(code):not(:where(pre code, [class~="not-prose"] *, [class~="not-prose"])) {
+    @apply text-gray-200 bg-gray-700;
+  }
+
+  .prose :where(code):not(:where(pre code, [class~="not-prose"] *, [class~="not-prose"])) {
+    @apply font-mono font-normal text-gray-600 bg-gray-100 px-1.5 py-0.5 rounded;
+  }
+
+  .prose :where(code):not(:where(pre code, [class~="not-prose"] *, [class~="not-prose"]))::before,
+  .prose :where(code):not(:where(pre code, [class~="not-prose"] *, [class~="not-prose"]))::after {
+    content: none !important;
+  }
+
+  .prose code::before,
+  .prose code::after {
+    content: none !important;
+  }
+}
