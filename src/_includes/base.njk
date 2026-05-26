@@ -1,19 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% if title %}{{ title }} — {% endif %}{{ meta.title }}</title>
   <meta name="description" content="{{ description or meta.description }}" />
+  <script>
+    (() => {
+      const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      let nextTheme = preferredTheme;
+      try {
+        const storedTheme = localStorage.getItem("theme");
+        if (storedTheme === "light" || storedTheme === "dark") {
+          nextTheme = storedTheme;
+        }
+      } catch (_) {}
+      document.documentElement.dataset.theme = nextTheme;
+    })();
+  </script>
   <link rel="stylesheet" href="/assets/css/style.css" />
 </head>
 <body class="font-sans bg-gray-50 text-gray-900 leading-relaxed flex flex-col min-h-screen">
   <header class="border-b border-gray-200 bg-white sticky top-0 z-10">
     <nav class="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
       <a class="font-bold text-lg text-gray-900 hover:no-underline" href="/">{{ meta.title }}</a>
-      <ul class="flex gap-6 list-none">
-        <li><a class="text-sm text-gray-500 hover:text-blue-600" href="/blog/">Blog</a></li>
-      </ul>
+      <div class="flex items-center gap-4">
+        <ul class="flex gap-6 list-none">
+          <li><a class="text-sm text-gray-500 hover:text-blue-600" href="/blog/">Blog</a></li>
+        </ul>
+        <button
+          id="theme-toggle"
+          type="button"
+          class="text-gray-500 border border-gray-200 rounded px-2 py-1.5 hover:text-blue-600 inline-flex items-center justify-center"
+          aria-label="Toggle color theme"
+          aria-pressed="false"
+        >
+          <svg id="theme-icon-sun" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/>
+          </svg>
+          <svg id="theme-icon-moon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3c0 .28 0 .57.02.85A7 7 0 0 0 20.15 12c.28.02.57.02.85.02Z"/>
+          </svg>
+          <span class="sr-only" id="theme-toggle-label">Toggle color theme</span>
+        </button>
+      </div>
     </nav>
   </header>
 
@@ -24,5 +55,37 @@
   <footer class="border-t border-gray-200 text-center py-6 text-gray-500 text-sm">
     <p>&copy; {{ meta.author }} · Built with <a class="hover:text-blue-600" href="https://www.11ty.dev">11ty</a></p>
   </footer>
+  <script>
+    (() => {
+      const toggleButton = document.getElementById("theme-toggle");
+      const moonIcon = document.getElementById("theme-icon-moon");
+      const sunIcon = document.getElementById("theme-icon-sun");
+      if (!toggleButton || !moonIcon || !sunIcon) return;
+
+      const persistTheme = (theme) => {
+        try {
+          localStorage.setItem("theme", theme);
+        } catch (_) {}
+      };
+
+      const updateToggleState = () => {
+        const isDark = document.documentElement.dataset.theme === "dark";
+        toggleButton.setAttribute("aria-pressed", String(isDark));
+        toggleButton.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+        moonIcon.classList.toggle("hidden", isDark);
+        sunIcon.classList.toggle("hidden", !isDark);
+      };
+
+      toggleButton.addEventListener("click", () => {
+        const currentTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = nextTheme;
+        persistTheme(nextTheme);
+        updateToggleState();
+      });
+
+      updateToggleState();
+    })();
+  </script>
 </body>
 </html>
