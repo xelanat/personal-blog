@@ -105,7 +105,7 @@ Ways I use it:
 - `git caan` during local cleanup before pushing.
 - `git caan` right after addressing a suggestion in a Github PR review.
 
-**Important**: amending rewrites commit history. Avoid it after the commit is shared.
+**Note**: Amending rewrites commit history. Force pushes will be needed if the commit is already shared, so be cognizant of the potential risks.
 
 ### `git refresh` → `git fetch --all && git remote prune origin`
 

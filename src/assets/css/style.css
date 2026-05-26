@@ -6,7 +6,7 @@
 
 @layer components {
   .header-anchor {
-    @apply no-underline text-gray-300 opacity-0 mr-2 font-normal;
+    @apply no-underline text-gray-300 opacity-0 ml-2 font-normal;
   }
 
   *:hover > .header-anchor,
