@@ -30,6 +30,8 @@ Aliases I've accumulated in my `.gitconfig` over the years, mostly as a byproduc
   forgetfulness=! git ls-files -v | grep ^[a-z]
 ```
 
+Full list of aliases, with breakdowns below.
+
 ## Speed / Brevity
 
 ```ini
@@ -48,7 +50,7 @@ The full status output. It’s my default “what changed?” command.
 
 ### `git co` → `git checkout`
 
-Mostly muscle memory for branch switching.
+I'm aware that `git switch` and `git restore` are preferred, but I have yet to consistently adopt these due to my muscle memory for this shortcut.
 
 Ways I use it:
 
