@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@source "../../**/*.njk";
+@source "../../**/*.md";
+
+@layer components {
+  .tag-filter-btn {
+    @apply px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium cursor-pointer border-0 transition-colors hover:bg-blue-100 focus:outline-none;
+  }
+  .tag-filter-btn.active {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+}

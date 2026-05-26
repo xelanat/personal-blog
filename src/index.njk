@@ -1,0 +1,44 @@
+---
+layout: base.njk
+title: Home
+---
+<section class="mb-12">
+  <h1 class="text-3xl font-extrabold mb-3 text-gray-900">Alex Tan</h1>
+  <p class="text-gray-600 mb-2">
+    Software engineer based in the Seattle Area. I record thoughts on my discipline,
+    and how to make software, people, and processes work better together. Indulging in: tooling, mental models, and the occasional rabbit hole.
+  </p>
+  <p class="text-gray-600">
+    Reach me at <a class="text-blue-600 hover:text-blue-700" href="mailto:{{ meta.email }}">{{ meta.email }}</a> or
+    <a class="text-blue-600 hover:text-blue-700" href="https://github.com/alextan" target="_blank" rel="noopener">GitHub</a>.
+  </p>
+</section>
+
+<section>
+  <h2 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Recent posts</h2>
+  <div class="border-t border-gray-200">
+    {% for post in collections.posts | reverse | slice(0, 5) %}
+    <div class="py-5 border-b border-gray-200">
+      <h2 class="text-lg font-semibold mb-1">
+        <a class="text-gray-900 hover:text-blue-600 no-underline" href="{{ post.url }}">{{ post.data.title }}</a>
+      </h2>
+      <div class="flex items-center gap-3 flex-wrap mb-1">
+        <span class="text-xs text-gray-500">{{ post.date | formatDate }}</span>
+        {% if post.data.tags %}
+        <ul class="flex flex-wrap gap-1.5 list-none">
+          {% for tag in post.data.tags %}
+            {% if tag !== "posts" %}
+            <li><span class="inline-block px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-medium">{{ tag }}</span></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% if post.data.excerpt %}<p class="text-sm text-gray-500">{{ post.data.excerpt }}</p>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  <p class="mt-6">
+    <a class="text-sm text-blue-600 hover:text-blue-700" href="/blog/">All posts &rarr;</a>
+  </p>
+</section>

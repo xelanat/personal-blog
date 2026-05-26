@@ -1,0 +1,57 @@
+---
+layout: base.njk
+title: Blog
+permalink: /blog/
+---
+<h1 class="text-3xl font-extrabold mb-6 text-gray-900">Blog</h1>
+
+<div class="flex flex-col gap-3 mb-8">
+  <div class="relative">
+    <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input id="search" type="search" placeholder="Search posts…" autocomplete="off"
+      class="w-full pl-9 pr-3 py-2.5 border border-gray-200 rounded-lg text-sm bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors" />
+  </div>
+
+  {% if collections.tagList.length %}
+  <div class="flex flex-wrap items-center gap-2">
+    <span class="text-xs text-gray-400 shrink-0">Filter by tag:</span>
+    {% for tag in collections.tagList %}
+    <button class="tag-filter-btn" data-tag="{{ tag | slugify }}">{{ tag }}</button>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+<div class="border-t border-gray-200">
+  {% for post in collections.posts %}
+  <div
+    class="post-card py-5 border-b border-gray-200"
+    data-title="{{ post.data.title }}"
+    data-tags="{{ post.data.tags | join(',') }}"
+    data-excerpt="{{ post.data.excerpt or '' }}"
+  >
+    <h2 class="text-lg font-semibold mb-1">
+      <a class="text-gray-900 hover:text-blue-600 no-underline" href="{{ post.url }}">{{ post.data.title }}</a>
+    </h2>
+    <div class="flex items-center gap-3 flex-wrap mb-1">
+      <span class="text-xs text-gray-500">{{ post.date | formatDate }}</span>
+      {% if post.data.tags %}
+      <ul class="flex flex-wrap gap-1.5 list-none">
+        {% for tag in post.data.tags %}
+          {% if tag !== "posts" %}
+          <li><span class="inline-block px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-medium">{{ tag }}</span></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    {% if post.data.excerpt %}<p class="text-sm text-gray-500">{{ post.data.excerpt }}</p>{% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+<p class="hidden text-center text-gray-500 text-sm py-10" id="no-results">No posts match your search.</p>
+
+<script src="/assets/js/blog.js"></script>

@@ -1,0 +1,27 @@
+{
+  "name": "personal-blog",
+  "version": "1.0.0",
+  "description": "Alex Tan's personal tech blog",
+  "type": "module",
+  "scripts": {
+    "build": "tailwindcss -i src/assets/css/style.css -o src/assets/css/dist.css && node --import tsx/esm ./node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts",
+    "start": "concurrently --kill-others-on-fail \"tailwindcss -i src/assets/css/style.css -o src/assets/css/dist.css --watch\" \"node --import tsx/esm ./node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts --serve\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "esbuild": "^0.24.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^22.0.0",
+    "concurrently": "^9.2.1",
+    "tailwindcss": "^4.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "@parcel/watcher"]
+  }
+}

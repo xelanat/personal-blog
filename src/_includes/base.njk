@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if title %}{{ title }} — {% endif %}{{ meta.title }}</title>
+  <meta name="description" content="{{ description or meta.description }}" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body class="font-sans bg-gray-50 text-gray-900 leading-relaxed flex flex-col min-h-screen">
+  <header class="border-b border-gray-200 bg-white sticky top-0 z-10">
+    <nav class="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a class="font-bold text-lg text-gray-900 hover:no-underline" href="/">{{ meta.title }}</a>
+      <ul class="flex gap-6 list-none">
+        <li><a class="text-sm text-gray-500 hover:text-blue-600" href="/blog/">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="max-w-2xl mx-auto px-6 py-12 flex-1 w-full">
+    {{ content | safe }}
+  </main>
+
+  <footer class="border-t border-gray-200 text-center py-6 text-gray-500 text-sm">
+    <p>&copy; {{ meta.author }} · Built with <a class="hover:text-blue-600" href="https://www.11ty.dev">11ty</a></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,4 @@
+_site/
+node_modules/
+src/assets/css/dist.css
+src/assets/js/blog.js
