@@ -113,8 +113,8 @@ Reasons to use it:
 - During local cleanup of commits before pushing. Get rid of those bad-habit commits with just `"fix"`, `"wip"`, or `"changes"` in the message.
 - To keep commit history clean after addressing suggestions in PR review.
 - You might pay less attention to this if you're squashing, but there are valid reasons to merge a PR while preserving a more detailed commit history. Example:
-    - commit1: `refactor: move utility function to shared folder for reusability`
-    - commit2: `feat: implement new component that relies on that utility function`.
+    - commit1: `"refactor: move utility function to shared folder for reusability"`
+    - commit2: `"feat: implement new component that relies on that utility function"`.
 
 **Note**: Amending rewrites commit history. Force pushes will be needed if the commit is already shared, so be cognizant of the potential risks.
 
