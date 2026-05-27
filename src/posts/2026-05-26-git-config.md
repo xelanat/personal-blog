@@ -153,3 +153,5 @@ Reverses `amnesia` so Git tracks changes to that file again.
 ### `git forgetfulness` → `git ls-files -v | grep ^[a-z]`
 
 Lists files currently marked with `assume-unchanged` (the ones Git is “forgetting”).
+
+> I'm always looking to improve my alias toolkit. If you have any useful suggestions, feel free to email me!
