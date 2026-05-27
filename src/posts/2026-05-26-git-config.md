@@ -14,6 +14,8 @@ Aliases I've accumulated in my `.gitconfig` over the years, mostly as a byproduc
 
 # Aliases
 
+Full list of aliases, with breakdowns below.
+
 ```ini
 [alias]
   st  = status
@@ -23,16 +25,16 @@ Aliases I've accumulated in my `.gitconfig` over the years, mostly as a byproduc
   po = pull origin
   pom = pull origin main
   caan = ! git add . && git commit -a --amend --no-edit
-  rpom = ! git co main && git refresh && git pull origin main
+  rpom = ! git co main && git refresh && git pom
   refresh = ! git fetch --all && git remote prune origin
   amnesia=update-index --assume-unchanged
   recall=update-index --no-assume-unchanged
   forgetfulness=! git ls-files -v | grep ^[a-z]
 ```
 
-Full list of aliases, with breakdowns below.
+## Speed & Brevity
 
-## Speed / Brevity
+Make commands feel like hot keys.
 
 ```ini
 [alias]
@@ -91,21 +93,28 @@ One command to sync the current branch with `origin/main`.
 
 ## Composites
 
+These are my bread and butter.
+
 ```ini
 [alias]
   caan = ! git add . && git commit -a --amend --no-edit
-  rpom = ! git co main && git refresh && git pull origin main
+  rpom = ! git co main && git refresh && git pom
   refresh = ! git fetch --all && git remote prune origin
 ```
 
 ### `git caan` → `git add . && git commit -a --amend --no-edit`
 
+Woah, you can do that? Yes, you `caan`!
+
 Amends the latest commit with current changes, keeping the same message. In practice, this feels like right-click + save.
 
-Ways I use it:
+Reasons to use it:
 
-- `git caan` during local cleanup before pushing.
-- `git caan` right after addressing a suggestion in a Github PR review.
+- During local cleanup of commits before pushing. Get rid of those bad-habit commits with just `"fix"`, `"wip"`, or `"changes"` in the message.
+- To keep commit history clean after addressing suggestions in PR review.
+- You might pay less attention to this if you're squashing, but there are valid reasons to merge a PR while preserving a more detailed commit history. Example:
+    - commit1: `refactor: move utility function to shared folder for reusability`
+    - commit2: `feat: implement new component that relies on that utility function`.
 
 **Note**: Amending rewrites commit history. Force pushes will be needed if the commit is already shared, so be cognizant of the potential risks.
 
@@ -113,11 +122,16 @@ Ways I use it:
 
 I do this frequently to ensure that my local branches are up to date with remote, and that I'm not harboring any stale remote branches.
 
-### `git rpom` → `git co main && git refresh && git pull origin main`
+### `git rpom` → `git co main && git refresh && git pom`
+
+_Note: This includes a nested call to `git refresh` and `git pom`._
 
 I pronounce this "arr palm". My “reset context” command: switch to `main`, refresh remotes, then pull latest `main`. I use this primarily before starting a new branch off of main, or when completing Task A and starting Task B.
 
+
 ## Amnesia Toolkit
+
+These commands were handed down to me from a former manager. They're rarely used but very useful.
 
 ```ini
 [alias]
@@ -125,8 +139,6 @@ I pronounce this "arr palm". My “reset context” command: switch to `main`, r
   recall=update-index --no-assume-unchanged
   forgetfulness=! git ls-files -v | grep ^[a-z]
 ```
-
-These commands were handed down to me from a former manager.
 
 ### `git amnesia` → `git update-index --assume-unchanged`
 
