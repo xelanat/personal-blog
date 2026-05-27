@@ -24,6 +24,7 @@ export default function (eleventyConfig: UserConfig) {
   // dist.css is built by Tailwind CLI before 11ty runs; rename to style.css in output
   eleventyConfig.addPassthroughCopy({ "src/assets/css/dist.css": "assets/css/style.css" });
   eleventyConfig.addPassthroughCopy("src/assets/js");
+  eleventyConfig.addPassthroughCopy("src/assets/images");
 
   eleventyConfig.addCollection("posts", (api) =>
     api.getFilteredByGlob("src/posts/*.md").reverse()

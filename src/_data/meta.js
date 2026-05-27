@@ -1,7 +1,7 @@
 export default {
-  title: "Alex Tan",
+  title: "alex tan",
   description: "My thoughts on software and more.",
-  url: "https://alextan.dev",
+  url: "https://www.xelanat.me",
   author: "Alex Tan",
   email: "alex.hui.tan@gmail.com",
 };
